@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  vailstt-server:
+    build: .
+    container_name: vailstt-server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped

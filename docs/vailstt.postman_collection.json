@@ -1,0 +1,341 @@
+{
+  "info": {
+    "_postman_id": "vailstt-server-v3",
+    "name": "VailsTT Server v3 — Universal Downloader API",
+    "description": "Koleksi lengkap endpoint VailsTT Server v3. Set variable `base_url` ke URL server kamu.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Ganti dengan URL server kamu, contoh: https://vailstt-server.up.railway.app"
+    },
+    {
+      "key": "youtube_url",
+      "value": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "type": "string"
+    },
+    {
+      "key": "tiktok_url",
+      "value": "https://www.tiktok.com/@khaby.lame/video/7137423965982174469",
+      "type": "string"
+    },
+    {
+      "key": "instagram_url",
+      "value": "https://www.instagram.com/reel/CqYMVQqIWvZ/",
+      "type": "string"
+    },
+    {
+      "key": "twitter_url",
+      "value": "https://x.com/NASA/status/1649106531117903873",
+      "type": "string"
+    },
+    {
+      "key": "vimeo_url",
+      "value": "https://vimeo.com/148751763",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🟢 Health Check",
+      "item": [
+        {
+          "name": "GET /api/health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/health",
+              "host": ["{{base_url}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Cek apakah server online."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"status\": \"online\",\n  \"uptime\": 12345,\n  \"version\": \"3.0.0\",\n  \"engine\": \"yt-dlp\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET / (Server info)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Info",
+      "item": [
+        {
+          "name": "GET /api/info — YouTube",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/info?url={{youtube_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "info"],
+              "query": [{ "key": "url", "value": "{{youtube_url}}" }]
+            },
+            "description": "Ambil informasi lengkap video YouTube."
+          }
+        },
+        {
+          "name": "GET /api/info — TikTok",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/info?url={{tiktok_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "info"],
+              "query": [{ "key": "url", "value": "{{tiktok_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/info — Vimeo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/info?url={{vimeo_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "info"],
+              "query": [{ "key": "url", "value": "{{vimeo_url}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🎛️ Formats",
+      "item": [
+        {
+          "name": "GET /api/formats — YouTube",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/formats?url={{youtube_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "formats"],
+              "query": [{ "key": "url", "value": "{{youtube_url}}" }]
+            },
+            "description": "Daftar semua format yang tersedia."
+          }
+        },
+        {
+          "name": "GET /api/formats — TikTok",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/formats?url={{tiktok_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "formats"],
+              "query": [{ "key": "url", "value": "{{tiktok_url}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "⬇️ Download",
+      "item": [
+        {
+          "name": "GET /api/download — YouTube",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/download?url={{youtube_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "download"],
+              "query": [{ "key": "url", "value": "{{youtube_url}}" }]
+            },
+            "description": "URL download terbaik: video_url, audio_url, merged_url."
+          }
+        },
+        {
+          "name": "GET /api/download — Instagram",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/download?url={{instagram_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "download"],
+              "query": [{ "key": "url", "value": "{{instagram_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/download — Twitter/X",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/download?url={{twitter_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "download"],
+              "query": [{ "key": "url", "value": "{{twitter_url}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🎵 Audio",
+      "item": [
+        {
+          "name": "GET /api/audio — YouTube (MP3)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/audio?url={{youtube_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "audio"],
+              "query": [{ "key": "url", "value": "{{youtube_url}}" }]
+            },
+            "description": "URL audio stream saja."
+          }
+        },
+        {
+          "name": "GET /api/audio — SoundCloud",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/audio?url=https://soundcloud.com/rick-astley/never-gonna-give-you-up",
+              "host": ["{{base_url}}"],
+              "path": ["api", "audio"],
+              "query": [{ "key": "url", "value": "https://soundcloud.com/rick-astley/never-gonna-give-you-up" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📱 VailsTT (Android)",
+      "item": [
+        {
+          "name": "GET /api/vailstt — YouTube",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url={{youtube_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "{{youtube_url}}" }]
+            },
+            "description": "⭐ Endpoint utama untuk Android. Response langsung bisa dirender: thumbnail, judul, daftar download."
+          }
+        },
+        {
+          "name": "GET /api/vailstt — TikTok",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url={{tiktok_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "{{tiktok_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/vailstt — Instagram",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url={{instagram_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "{{instagram_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/vailstt — Twitter/X",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url={{twitter_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "{{twitter_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/vailstt — Vimeo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url={{vimeo_url}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "{{vimeo_url}}" }]
+            }
+          }
+        },
+        {
+          "name": "GET /api/vailstt — Reddit",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url=https://www.reddit.com/r/videos/comments/abc123/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "https://www.reddit.com/r/videos/comments/abc123/" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "⚠️ Error Cases",
+      "item": [
+        {
+          "name": "400 — Missing URL",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"]
+            },
+            "description": "Harus return 400 dengan error message."
+          }
+        },
+        {
+          "name": "400 — Invalid URL",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/vailstt?url=not-a-url",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vailstt"],
+              "query": [{ "key": "url", "value": "not-a-url" }]
+            }
+          }
+        },
+        {
+          "name": "404 — Unknown endpoint",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/nonexistent",
+              "host": ["{{base_url}}"],
+              "path": ["api", "nonexistent"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
