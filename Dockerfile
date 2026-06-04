@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     curl \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/*
 
 # Install yt-dlp as a system binary (always latest stable)
